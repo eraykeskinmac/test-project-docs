@@ -1,6 +1,7 @@
 {
-  "buildCommand": "cd .fumadocs && npm install --legacy-peer-deps && npm run build",
-  "outputDirectory": ".fumadocs/.next",
-  "installCommand": "echo \"Skip root install\"",
-  "framework": null
+  "buildCommand": "echo 'Build handled by GitHub Actions'",
+  "outputDirectory": ".nexusdocs/.next",
+  "installCommand": "echo 'Skip install'",
+  "framework": null,
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./"
 }
