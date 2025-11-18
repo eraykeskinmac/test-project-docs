@@ -1,0 +1,11 @@
+{
+  "name": "documentation-docs",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "docs:dev": "cd .fumadocs && npm run dev",
+    "docs:build": "cd .fumadocs && npm install --legacy-peer-deps && npm run build",
+    "docs:start": "cd .fumadocs && npm start"
+  },
+  "devDependencies": {}
+}

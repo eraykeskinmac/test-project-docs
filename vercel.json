@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd .fumadocs && npm install --legacy-peer-deps && npm run build",
+  "outputDirectory": ".fumadocs/.next",
+  "installCommand": "echo \"Skip root install\"",
+  "framework": null
+}

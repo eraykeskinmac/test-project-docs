@@ -1,0 +1,202 @@
+---
+title: Button Component
+description: A versatile button component with multiple variants
+---
+
+# Button Component
+
+A flexible button component with multiple styles and states.
+
+## Import
+
+```tsx
+import { Button } from 'your-package/components';
+```
+
+## Basic Usage
+
+```tsx
+<Button>Click me</Button>
+```
+
+## Variants
+
+The button supports multiple visual variants:
+
+### Primary
+
+```tsx
+<Button variant="primary">Primary Button</Button>
+```
+
+### Secondary
+
+```tsx
+<Button variant="secondary">Secondary Button</Button>
+```
+
+### Outline
+
+```tsx
+<Button variant="outline">Outline Button</Button>
+```
+
+### Ghost
+
+```tsx
+<Button variant="ghost">Ghost Button</Button>
+```
+
+## Sizes
+
+Control the button size:
+
+```tsx
+<Button size="sm">Small</Button>
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+```
+
+## States
+
+### Loading
+
+Show a loading spinner:
+
+```tsx
+<Button loading>
+  Loading...
+</Button>
+```
+
+### Disabled
+
+Disable user interaction:
+
+```tsx
+<Button disabled>
+  Disabled
+</Button>
+```
+
+## With Icons
+
+Add icons to buttons:
+
+```tsx
+import { ChevronRight, Download } from 'lucide-react';
+
+<Button>
+  <Download className="mr-2" />
+  Download
+</Button>
+
+<Button>
+  Continue
+  <ChevronRight className="ml-2" />
+</Button>
+```
+
+## Full Width
+
+Make button span full width:
+
+```tsx
+<Button fullWidth>
+  Full Width Button
+</Button>
+```
+
+## Props
+
+### ButtonProps
+
+```typescript
+interface ButtonProps {
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  loading?: boolean;
+  disabled?: boolean;
+  fullWidth?: boolean;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  children: React.ReactNode;
+  type?: 'button' | 'submit' | 'reset';
+  className?: string;
+}
+```
+
+## Examples
+
+### Form Submit Button
+
+```tsx
+<form onSubmit={handleSubmit}>
+  <input type="email" placeholder="Email" />
+  <Button type="submit" loading={isSubmitting}>
+    Submit
+  </Button>
+</form>
+```
+
+### Async Action
+
+```tsx
+function DeleteButton() {
+  const [loading, setLoading] = useState(false);
+
+  const handleDelete = async () => {
+    setLoading(true);
+    try {
+      await deleteItem();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Button
+      variant="outline"
+      loading={loading}
+      onClick={handleDelete}
+    >
+      Delete
+    </Button>
+  );
+}
+```
+
+### Button Group
+
+```tsx
+<div className="flex gap-2">
+  <Button variant="outline">Cancel</Button>
+  <Button variant="primary">Save</Button>
+</div>
+```
+
+## Accessibility
+
+The button component is fully accessible:
+
+- Supports keyboard navigation (Enter and Space)
+- Proper ARIA attributes
+- Disabled state prevents interaction
+- Loading state announces to screen readers
+
+## Styling
+
+Customize the button with CSS:
+
+```css
+.custom-button {
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+```
+
+```tsx
+<Button className="custom-button">
+  Custom Style
+</Button>
+```
