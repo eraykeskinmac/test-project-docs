@@ -21,7 +21,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
       
       - name: Install Nexus Docs CLI
         run: npm install -g nexus-docs@latest
@@ -29,13 +28,13 @@ jobs:
       - name: Create environment file
         run: |
           mkdir -p docs
-          cat > docs/.env.local << EOF
+          cat > docs/.env.local << ENVEOF
           AZURE_AD_CLIENT_ID=${{ secrets.AZURE_AD_CLIENT_ID }}
           AZURE_AD_CLIENT_SECRET=${{ secrets.AZURE_AD_CLIENT_SECRET }}
           AZURE_AD_TENANT_ID=${{ secrets.AZURE_AD_TENANT_ID }}
           NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}
           NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }}
-          EOF
+          ENVEOF
       
       - name: Build documentation
         run: nexus-docs build
