@@ -17,23 +17,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
       
-      - name: Clone and build Nexus Docs CLI
-        run: |
-          git clone https://github.com/oplog/nexus-docs-cli.git /tmp/nexus-cli
-          cd /tmp/nexus-cli
-          npm install
-          npm run build
-          npm link
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+        working-directory: .nexusdocs
       
       - name: Create environment file
         run: |
-          mkdir -p docs
-          cat > docs/.env.local << ENVEOF
+          cat > .nexusdocs/.env.local << ENVEOF
           AZURE_AD_CLIENT_ID=${{ secrets.AZURE_AD_CLIENT_ID }}
           AZURE_AD_CLIENT_SECRET=${{ secrets.AZURE_AD_CLIENT_SECRET }}
           AZURE_AD_TENANT_ID=${{ secrets.AZURE_AD_TENANT_ID }}
@@ -42,7 +40,8 @@ jobs:
           ENVEOF
       
       - name: Build documentation
-        run: nexus-docs build
+        run: npm run build
+        working-directory: .nexusdocs
       
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
