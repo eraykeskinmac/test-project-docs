@@ -1,5 +1,12 @@
 import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth';
 
-export default function HomePage() {
+export default async function HomePage() {
+  const session = await getServerSession();
+  
+  if (!session) {
+    redirect('/api/auth/signin');
+  }
+  
   redirect('/docs');
 }
