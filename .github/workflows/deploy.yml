@@ -39,18 +39,21 @@ jobs:
           ENVEOF
         working-directory: .nexusdocs
       
-      - name: Build documentation
-        run: npm run build
-        working-directory: .nexusdocs
-      
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
+      
+      - name: Build with Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel build --prod --token=$VERCEL_TOKEN
+        working-directory: .nexusdocs
       
       - name: Deploy to Vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-        run: |
-          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
+        run: vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
         working-directory: .nexusdocs
