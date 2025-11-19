@@ -1,7 +1,8 @@
 {
   "buildCommand": "echo 'Build handled by GitHub Actions'",
-  "outputDirectory": ".nexusdocs/.next",
+  "outputDirectory": ".next",
   "installCommand": "echo 'Skip install'",
   "framework": null,
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./"
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./",
+  "rootDirectory": ".nexusdocs"
 }
