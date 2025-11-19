@@ -2,6 +2,7 @@ import { createMDX } from 'fumadocs-mdx/next';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { existsSync } from 'fs';
+import { config as dotenvConfig } from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -9,7 +10,6 @@ const __dirname = dirname(__filename);
 // Load .env.local if it exists (local development)
 const envPath = join(__dirname, '.env.local');
 if (existsSync(envPath)) {
-  const { config: dotenvConfig } = await import('dotenv');
   dotenvConfig({ path: envPath });
 }
 
