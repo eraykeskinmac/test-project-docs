@@ -1,4 +1,7 @@
 
 # Nexus Docs
-.nexusdocs/
 docs/.env.local
+.nexusdocs/node_modules/
+.nexusdocs/.next/
+.nexusdocs/.env.local
+.nexusdocs/.source/
